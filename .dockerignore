@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.bak
+dedup.db
+agent.log
+._*
+.DS_Store
+backup_*/
+.git/
+.gitignore
