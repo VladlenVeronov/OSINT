@@ -42,7 +42,6 @@ YACY_MAX        = int(_opt("YACY_MAX", "6"))
 # ── Стан / дедублікація ───────────────────────────────────
 DB_PATH         = _opt("DB_PATH", "/data/dedup.db")
 LOCK_FILE       = _opt("LOCK_FILE", "/tmp/osint_agent.lock")
-LOG_PATH        = _opt("LOG_PATH", "/data/agent.log")
 
 # ── Порогові значення ─────────────────────────────────────
 MIN_IMPORTANCE  = int(_opt("MIN_IMPORTANCE", "1"))

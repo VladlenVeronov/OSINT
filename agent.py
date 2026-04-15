@@ -15,7 +15,7 @@ import logging
 # Додаємо директорію скрипту до path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from config import LOCK_FILE, LOG_PATH, MIN_IMPORTANCE, MAX_ALERTS_RUN, MAX_RED_DAY, MAX_YELLOW_DAY, MAX_GREEN_DAY, WP_ENABLED
+from config import LOCK_FILE, MIN_IMPORTANCE, MAX_ALERTS_RUN, MAX_RED_DAY, MAX_YELLOW_DAY, MAX_GREEN_DAY, WP_ENABLED
 from sources import collect_all
 from llm import analyze_signals, rewrite_for_web
 from dedup import make_hash, is_seen, mark_seen, filter_new_sources, mark_sources_seen, is_similar_to_recent, count_sent_today_by_level
@@ -24,16 +24,10 @@ from wordpress import publish, is_wp_duplicate
 import bluesky_sender
 import mastodon_sender
 
-import os
-os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
-    handlers=[
-        logging.FileHandler(LOG_PATH),
-        logging.StreamHandler(sys.stdout),
-    ]
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 log = logging.getLogger("osint")
 
