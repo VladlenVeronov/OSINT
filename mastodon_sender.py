@@ -33,19 +33,14 @@ def format_post(alert: dict) -> str:
     imp        = alert.get("importance", 1)
     alert_type = alert.get("type", "")
     countries  = _country_flags(alert.get("countries", []))
-    note       = alert.get("note", "")
-
-    title_en      = alert.get("title_en", "")
-    body_en       = alert.get("body_en", "")
-    conclusion_en = alert.get("conclusion_en", "")
+    title_en = alert.get("title_en", "")
+    body_en  = alert.get("body_en", "")
 
     hashtags = build_tags("mastodon", alert.get("tags", []), alert.get("level", "GREEN"))
 
     header = f"{icon} {alert_type} | {imp}/10"
     if countries:
         header += f"\n{countries}"
-
-    note_line = f"\n\n💬 {note}" if note else ""
 
     # RED: посилання на WP статтю
     level  = alert.get("level", "GREEN")
@@ -56,7 +51,6 @@ def format_post(alert: dict) -> str:
         f"{header}\n\n"
         f"{title_en}\n"
         f"{body_en}"
-        f"{note_line}"
         f"{link_line}\n\n"
         f"{hashtags}"
     )
