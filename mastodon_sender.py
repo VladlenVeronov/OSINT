@@ -5,6 +5,7 @@ OSINT Agent — публікація в Mastodon
 
 import requests
 from config import MASTO_INSTANCE, MASTO_TOKEN, MASTO_ENABLED
+from hashtags import build as build_tags
 
 LEVEL_CONFIG = {
     "RED":    {"icon": "🔴"},
@@ -38,8 +39,7 @@ def format_post(alert: dict) -> str:
     body_en       = alert.get("body_en", "")
     conclusion_en = alert.get("conclusion_en", "")
 
-    raw_tags = alert.get("tags", [])[:6]
-    hashtags = " ".join(t if t.startswith("#") else f"#{t}" for t in raw_tags)
+    hashtags = build_tags("mastodon", alert.get("tags", []), alert.get("level", "GREEN"))
 
     header = f"{icon} {alert_type} | {imp}/10"
     if countries:

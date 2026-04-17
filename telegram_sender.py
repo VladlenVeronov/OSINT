@@ -5,6 +5,7 @@ OSINT Agent — відправка в Telegram
 
 import requests
 from config import TG_BOT_TOKEN, TG_CHAT_ID, TG_THREAD_ID
+from hashtags import build as build_tags
 
 BASE = f"https://api.telegram.org/bot{TG_BOT_TOKEN}"
 
@@ -33,7 +34,7 @@ def format_message(alert: dict) -> str:
     imp        = alert.get("importance", 1)
     alert_type = alert.get("type", "")
     countries  = _country_flags(alert.get("countries", []))
-    tags       = " ".join(alert.get("tags", []))
+    tags       = build_tags("telegram", alert.get("tags", []), alert.get("level", "GREEN"))
     note       = alert.get("note", "")
 
     title_ua      = alert.get("title_ua", "")

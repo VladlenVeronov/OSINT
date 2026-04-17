@@ -5,6 +5,7 @@ OSINT Agent — публікація в Bluesky
 
 import requests
 from config import BS_HANDLE, BS_APP_PASSWORD, BS_ENABLED
+from hashtags import build as build_tags
 
 BSKY_PDS      = "https://bsky.social"
 BSKY_MAX_CHARS = 300
@@ -45,8 +46,7 @@ def format_post(alert: dict) -> str:
     title_en = alert.get("title_en", "")
     body_en  = alert.get("body_en", "")
 
-    raw_tags = alert.get("tags", [])[:3]
-    hashtags = " ".join(t if t.startswith("#") else f"#{t}" for t in raw_tags)
+    hashtags = build_tags("bluesky", alert.get("tags", []), alert.get("level", "GREEN"))
 
     header = f"{icon} {alert_type} | {imp}/10"
     if countries:
