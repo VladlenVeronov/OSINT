@@ -6,7 +6,7 @@ import re
 import logging
 import requests
 from base64 import b64encode
-from config import WP_URL, WP_USER, WP_APP_PASSWORD, WP_CATEGORY_ID, WP_ENABLED
+from config import WP_URL, WP_USER, WP_APP_PASSWORD, WP_CATEGORY_ID, WP_AUTHOR_ID, WP_ENABLED
 
 log = logging.getLogger("osint")
 
@@ -256,6 +256,7 @@ def publish(alert: dict) -> tuple[bool, str]:
         "status":     "publish",
         "categories": [WP_CATEGORY_ID],
         "tags":       tag_ids,
+        "author":     WP_AUTHOR_ID,
         "meta":       meta_fields,
     }
 

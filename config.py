@@ -55,6 +55,7 @@ WP_URL          = _opt("WP_URL", "https://newsgroup.site/wp-json/wp/v2/posts")
 WP_USER         = _req("WP_USER")
 WP_APP_PASSWORD = _req("WP_APP_PASSWORD")
 WP_CATEGORY_ID  = int(_opt("WP_CATEGORY_ID", "505"))
+WP_AUTHOR_ID    = int(_opt("WP_AUTHOR_ID", "22"))
 WP_ENABLED      = _opt("WP_ENABLED", "true").lower() in ("1", "true", "yes")
 
 # ── Pexels (зображення для статей) ────────────────────────
